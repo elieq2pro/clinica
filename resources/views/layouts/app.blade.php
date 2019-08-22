@@ -51,15 +51,20 @@
                         @else
                             @if( auth()->user()->hasRoles(['admin']) )
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.index') }}">Pacientes</a>
+                                    <a class="nav-link" href="{{ route('pacientes.index') }}">Pacientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Especialidad</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Médicos</a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Especialidad</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Médicos</a>
-                            </li>
+                            @if(auth()->user()->hasRoles(['paciente']))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Directorio médico</a>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
