@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,6 +47,14 @@ class PacientesController extends Controller
             'password' => Hash::make($request['password']),
             'role_id' => 3,
         ]);
+        $user=User::all();
+        $user->last()->patient()->create([
+            'dni' => $request['dni'],
+            'gender' => $request['gender'],
+            'birthdate' => $request['birthdate'],
+            'marital_status' => $request['marital_status'],
+            'insurance_company' => $request['insurance_company'],
+        ]);
         return $this->index();
     }
 
@@ -87,7 +94,17 @@ class PacientesController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $user->update($request->all());
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+        ]);
+        $user->patient()->update([
+            'dni' => $request['dni'],
+            'gender' => $request['gender'],
+            'birthdate' => $request['birthdate'],
+            'marital_status' => $request['marital_status'],
+            'insurance_company' => $request['insurance_company'],
+        ]);
 
         return back()->with('info', 'Paciente actualizado');
     }
@@ -101,7 +118,7 @@ class PacientesController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-
+        $user->patient->delete();
         $user->delete();
 
         return back();
