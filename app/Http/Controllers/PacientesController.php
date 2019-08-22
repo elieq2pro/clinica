@@ -20,7 +20,7 @@ class PacientesController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::all()->where('role_id',3);
         return view('pacientes.index', compact('users'));
     }
 
