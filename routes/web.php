@@ -22,6 +22,7 @@ Route::view('/', 'home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('directorio', 'HomeController@directorio')->name('directorio');
 Route::resource('users','UsersController');
 Route::resource('pacientes','PacientesController');
 Route::resource('doctores','DoctorsController');

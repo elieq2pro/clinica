@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +20,6 @@ class DoctorsController extends Controller
     public function index()
     {
         $users = User::all()->where('role_id',2);
-        $specialty = Specialty::all();
         return view('doctores.index', compact('users'));
     }
 

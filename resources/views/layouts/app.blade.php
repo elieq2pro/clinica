@@ -62,7 +62,7 @@
                             @endif
                             @if(auth()->user()->hasRoles(['paciente']))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Directorio médico</a>
+                                    <a class="nav-link" href="{{ route('directorio') }}">Directorio médico</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">
