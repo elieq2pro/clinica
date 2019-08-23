@@ -1,33 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1>Todos los pacientes</h1>
-	<a class="btn btn-success" href="{{ route('pacientes.create') }}">Crear paciente</a>
+	<h1>Todos los doctores</h1>
+	<a class="btn btn-success" href="{{ route('doctores.create') }}">Crear doctor</a>
 	<table class="table">
 		<tr>
 			<th>ID</th>
 			<th>Nombre</th>
 			<th>Email</th>
 			<th>Dni</th>
-			<th>Genero</th>
-			<th>Fecha de nacimiento</th>
-			<th>Estado civil</th>
-			<th>Compañia de seguros</th>
+			<th>CMP</th>
+			<th>Especialidades</th>
 			<th>Acción</th>
 		</tr>
 		@foreach ($users as $user)
 			<tr>
 				<td>{{ $user->id }}</td>
-				<td>{{ $user->name }}</td>
+				<td><a href="{{ route('doctores.show', $user->id) }}">{{ $user->name }}</a></td>
 				<td>{{ $user->email }}</td>
-				<td>{{ $user->patient->dni }}</td>
-				<td>{{ $user->patient->gender }}</td>
-				<td>{{ $user->patient->birthdate }}</td>
-				<td>{{ $user->patient->marital_status }}</td>
-				<td>{{ $user->patient->insurance_company }}</td>
+				<td>{{ $user->doctor->dni }}</td>
+				<td>{{ $user->doctor->cmp }}</td>
 				<td>
-					<a class="btn btn-info btn-xs" href="{{ route('pacientes.edit', $user->id) }}">Editar</a><br>
-					<form method="POST" action="{{ route('pacientes.destroy', $user->id) }}">
+					@foreach($user->specialties as $specialty)
+						[{{ $specialty->name }}]
+					@endforeach
+				</td>
+				<td>
+					<a class="btn btn-info btn-xs" href="{{ route('doctores.edit', $user->id) }}">Editar</a><br>
+					<form method="POST" action="{{ route('doctores.destroy', $user->id) }}">
 						@csrf @method('DELETE')
 						<button class="btn btn-danger btn-xs">Eliminar</button>
 					</form>

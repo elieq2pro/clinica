@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Crear paciente</h1>
+<h1>Crear doctor</h1>
 
 
-<form method="POST" action="{{ route('pacientes.store') }}">
+<form method="POST" action="{{ route('doctores.store') }}">
 	@csrf
 	<label>
 		Nombre <br>
@@ -27,29 +27,8 @@
 	</label>
 	<br>
 	<label>
-		Genero <br>
-		<select name="gender">
-			<option value="masculino">Masculino</option>
-			<option value="femenino">Femenino</option>
-		</select>
-	</label>
-	<br>
-	<label>
-		Fecha de nacimiento <br>
-		<input type="date" name="birthdate" value="{{ old('birthdate') }}">
-	</label>
-	<br>
-	<label>
-		Estado civil <br>
-		<select name="marital_status">
-			<option value="soltero">Soltero</option>
-			<option value="casado">Casado</option>
-		</select>
-	</label>
-	<br>
-	<label>
-		Compañia de seguros <br>
-		<input type="text" name="insurance_company" value="{{ old('insurance_company') }}">
+		CMP <br>
+		<input type="text" name="cmp" value="{{ old('cmp') }}">
 	</label>
 	<br>
 	<button>Crear</button>

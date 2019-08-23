@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Specialty;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class DoctorsController extends Controller
+class SpecialtyController extends Controller
 {
     function __construct()
     {
@@ -20,9 +18,8 @@ class DoctorsController extends Controller
      */
     public function index()
     {
-        $users = User::all()->where('role_id',2);
-        $specialty = Specialty::all();
-        return view('doctores.index', compact('users'));
+        $specialties = Specialty::all();
+        return view('especialidades.index', compact('specialties'));
     }
 
     /**
@@ -32,7 +29,7 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        return view('doctores.create');
+        return view('especialidades.create');
     }
 
     /**
@@ -43,16 +40,8 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'role_id' => 2,
-        ]);
-        $user=User::all();
-        $user->last()->doctor()->create([
-            'dni' => $request['dni'],
-            'cmp' => $request['cmp'],
+        Specialty::create([
+            'name' => $request['name']
         ]);
         return $this->index();
     }
@@ -65,9 +54,9 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $specialty = Specialty::findOrFail($id);
 
-        return view('doctores.show', compact('user'));
+        return view('especialidades.show', compact('specialty'));
     }
 
     /**
@@ -78,8 +67,8 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('doctores.edit', compact('user'));
+        $specialty = Specialty::findOrFail($id);
+        return view('especialidades.edit', compact('specialty'));
     }
 
     /**
@@ -91,18 +80,11 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $specialty = Specialty::findOrFail($id);
 
-        $user->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-        ]);
-        $user->doctor()->update([
-            'dni' => $request['dni'],
-            'cmp' => $request['cmp'],
-        ]);
+        $specialty->update(['name' => $request['name']]);
 
-        return back()->with('info', 'Doctor actualizado');
+        return back()->with('info', 'Especialidad actualizada');
     }
 
     /**
@@ -113,9 +95,8 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->doctor->delete();
-        $user->delete();
+        $specialty = Specialty::findOrFail($id);
+        $specialty->delete();
 
         return back();
     }

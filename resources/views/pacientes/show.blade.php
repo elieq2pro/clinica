@@ -11,21 +11,24 @@
 		<td>{{ $user->email }}</td>
 	</tr>
 	<tr>
-		<th>Roles:</th>
-		<td>
-			{{-- @foreach($user->roles as $role)
-			{{ $role->display_name }}
-			@endforeach --}}
-		</td>
+		<th>DNI:</th>
+		<td>{{ $user->patient->dni }}</td>
+	</tr>
+	<tr>
+		<th>Genero:</th>
+		<td>{{ $user->patient->gender }}</td>
+	</tr>
+	<tr>
+		<th>Fecha nacimiento:</th>
+		<td>{{ $user->patient->birthdate }}</td>
+	</tr>
+	<tr>
+		<th>Estado civil:</th>
+		<td>{{ $user->patient->marital_state }}</td>
+	</tr>
+	<tr>
+		<th>Compañia de seguros:</th>
+		<td>{{ $user->patient->insurance_company }}</td>
 	</tr>
 </table>
-@can('edit', $user)
-	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info">Editar</a>
-@endcan
-@can('destroy', $user)
-	<form method="POST" action="{{ route('users.destroy', $user->id) }}">
-		@csrf @method('DELETE')
-		<button class="btn btn-danger btn-xs">Eliminar</button>
-	</form>
-@endcan
 @endsection

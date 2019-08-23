@@ -54,10 +54,10 @@
                                     <a class="nav-link" href="{{ route('pacientes.index') }}">Pacientes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Especialidad</a>
+                                    <a class="nav-link" href="{{ route('especialidades.index') }}">Especialidad</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Médicos</a>
+                                    <a class="nav-link" href="{{ route('doctores.index') }}">Doctores</a>
                                 </li>
                             @endif
                             @if(auth()->user()->hasRoles(['paciente']))

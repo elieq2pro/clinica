@@ -19,11 +19,11 @@
 		<td>{{ $user->doctor->cmp }}</td>
 	</tr>
 	<tr>
-		<th>Especialidades:</th>
+		<th>Roles:</th>
 		<td>
-			@foreach($user->specialties as $specialty)
-				[{{ $specialty->name }}]
-			@endforeach
+			{{-- @foreach($user->roles as $role)
+			{{ $role->display_name }}
+			@endforeach --}}
 		</td>
 	</tr>
 </table>

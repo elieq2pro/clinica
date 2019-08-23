@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Editar paciente</h1>
+<h1>Editar doctor</h1>
 
 @if (session()->has('info'))
 <div class="alert alert-success">
 	{{ session('info') }}
 </div>
 @endif
-<form method="POST" action="{{ route('pacientes.update', $user) }}">
+<form method="POST" action="{{ route('doctores.update', $user) }}">
 	@csrf @method('PATCH')
 	<label>
 		Nombre <br>
@@ -22,33 +22,12 @@
 	<br>
 	<label>
 		Dni <br>
-		<input type="text" name="dni" value="{{ old('dni', $user->patient->dni) }}">
+		<input type="text" name="dni" value="{{ old('dni', $user->doctor->dni) }}">
 	</label>
 	<br>
 	<label>
-		Genero <br>
-		<select name="gender">
-			<option value="masculino">Masculino</option>
-			<option value="femenino">Femenino</option>
-		</select>
-	</label>
-	<br>
-	<label>
-		Fecha de nacimiento <br>
-		<input type="date" name="birthdate" value="{{ old('birthdate', $user->patient->birthdate) }}">
-	</label>
-	<br>
-	<label>
-		Estado civil <br>
-		<select name="marital_status">
-			<option value="soltero">Soltero</option>
-			<option value="casado">Casado</option>
-		</select>
-	</label>
-	<br>
-	<label>
-		Compañia de seguros <br>
-		<input type="text" name="insurance_company" value="{{ old('insurance_company', $user->patient->insurance_company) }}">
+		CMP <br>
+		<input type="text" name="cmp" value="{{ old('cmp', $user->doctor->cmp) }}">
 	</label>
 	<br>
 	<button>Actualizar</button>
